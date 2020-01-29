@@ -8,7 +8,7 @@ console.log(y);
 // 2. Print the Fibonacci number that is greater than 1000.
 n = 0;
 l = 1;
-While(n <== 1000){
+While(n <= 1000){
   n = n + l;
   l = l + n;
   console.log(1);
