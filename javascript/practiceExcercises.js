@@ -4,3 +4,7 @@ for (let x = 0; x < 10; x ++){
   y += x ** 2;
 }
 console.log(y);
+
+// 2. Print the Fibonacci number that is greater than 1000.
+
+//Print the number of integers from 1 through
