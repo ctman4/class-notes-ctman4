@@ -10,7 +10,7 @@ n = 0;
 l = 1;
 while(n <== 1000){
   n = n + l;
-  l = l + n;
+  l = l + 1;
   console.log(l);
 
 }
