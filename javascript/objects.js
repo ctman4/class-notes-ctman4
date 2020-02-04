@@ -29,7 +29,7 @@ const languages = ['HTML', 'CSS', 'JS'];
 console.log(languages);
 
 //Accessing length and elements
-for(let i=0; i < lenguages.length; i++){
+for(let i=0; i < languages.length; i++){
   console.log(languages[i]);
 }
 
