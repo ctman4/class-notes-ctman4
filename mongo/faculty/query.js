@@ -1,4 +1,4 @@
-// Query the faculty database
+// Store some data in the faculty database
 
 const mongoose = require('mongoose');
 const connect = require('./db');
@@ -6,69 +6,36 @@ const Professor = require('./schema');
 
 connect(); // To the database
 
-/*// What documents are in the collection?
-const query = Professor.find();
-query.exec(function(error, professors) {
-  if (error) console.error(error.stack);
-  console.log(professors);
-});*/
-
-const queries = [
-
-  // What are names in alphabetical order?
-  Professor.find().sort('name'),
-
-  // Who started most recently?
-  Professor.find().sort('-started').limit(1),
-
-  // Who started in 2003?
-  Professor.find().where('started').equals(2003),
-
-  // Who teaches 362?
-  Professor.find().where('courses').in(362),
-
-  // What are all the ranks?
-  Professor.distinct('rank')
-];
-
-// Professor.find().sort('name')
-queries[0].exec(function(error, professors) {
-  if (error) console.error(error.stack);
-
-  const names = professors.map(p => p.name);
-  console.log('Names in order: ', names);
+// Create some faculty
+const harcourt = new Professor({
+  name: 'Ed Harcourt',
+  rank: 'Full',
+  started: 2003,
+  courses: [140, 220, 345, 362, 364]
 });
 
-// Professor.find().sort('-started').limit(1)
-queries[1].exec(function(error, professors) {
-  if (error) console.error(error.stack);
-
-  const names = professors.map(p => p.name);
-  console.log('Started most recently: ', names);
+const torrey = new Professor({
+  name: 'Lisa Torrey',
+  rank: 'Associate',
+  started: 2009,
+  courses: [140, 219, 332, 362, 374, 380]
 });
 
-// Professor.find().where('started').equals(2003)
-queries[2].exec(function(error, professors) {
-  if (error) console.error(error.stack);
-
-  const names = professors.map(p => p.name);
-  console.log('Started in 2003: ', names);
+const lee = new Professor({
+  name: 'Choong-Soo Lee',
+  rank: 'Associate',
+  started: 2010,
+  courses: [140, 219, 256, 321, 370]
 });
 
-// Professor.find().where('courses').in(362)
-queries[3].exec(function(error, professors) {
-  if (error) console.error(error.stack);
-
-  const names = professors.map(p => p.name);
-  console.log('Teaches 362: ', names);
-});
-
-// Professor.distinct('rank')
-queries[4].exec(function(error, ranks) {
-  if (error) console.error(error.stack);
-
-  console.log('Distinct ranks: ', ranks);
-});
+// Delete any previous data
+mongoose.connection.dropDatabase()
+  .then(() => harcourt.save())
+  .then(() => torrey.save())
+  .then(() => lee.save())
+  .then(() => mongoose.connection.close())
+  .then(() => console.log('Database is ready.'))
+  .catch(error => console.error(error.stack));
 
 
 
@@ -94,4 +61,8 @@ queries[4].exec(function(error, ranks) {
   //map operation takes an array of something and creates another array
   //In this case we have a professor object with a corresponding name and
   //we are mapping the objects to the array of names
+
+  //to avoid nesting, use a chain of .then()s for the callbacks. This is just a long chain of method calls
+  //then use a catch at the end of the code which will catch any errors that occur
+  //then we replace the 'function' calls with mapping: .then(() => harcourt.save())
 ]
