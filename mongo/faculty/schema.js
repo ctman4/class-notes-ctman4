@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const Professor = new mongoose.Schema({
   //four columns
   name: String,
-  rank:String,
+  rank: String,
   started: Number,
   courses: [Number]//an array
 });
