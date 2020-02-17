@@ -4,9 +4,16 @@
   <head>
     <meta charset= "utf-8"> <!-- sets the character type-->
     <title>TITLE</title> <!-- Whatever you put in place of TITLE here will be yopur page title-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   </head>
   <body>
-    <form>
+    <form class = "m-3 border p-3">
+
+//A form group is a class that bootstrap defines and it goes a long way with formatting layout and widths
+//A this one effects the vertical layout..will not have any side by side.  with forms we want to give a little info at a time
+//or else they will jsut not want to do it
+
+// to make the label sizes all the same
       <label for = "text">Text:</label>
       <input type = "text" id ="text" name = "text"> //name = value of variable(whatever is in text box)
       //iputs need a types text areas only have one type
@@ -19,7 +26,7 @@
           <input type = "checkbox" id = "check2" name = "check2" value = "D">
           <label for = "check2">D</label>
       </fieldset>
-
+//radio buttons-> if they have the same name then only ne can be cheacked off at a time
       <fieldset>
         <legend>Radio buttons:</legend>
         <input type="radio" id="radio1" name="radio" value="A">
@@ -27,6 +34,7 @@
         <input type="radio" id="radio2" name="radio" value="B">
         <label for="radio2">B</label>
       </fieldset>
+
 
       <label for="select">Select:</label>
       <select id="select" name="select">
@@ -36,11 +44,7 @@
 
       <button type="submit">Submit</button>
       <button>Cancel</button>
-
-
-
-      //radio buttons-> if they have the same name then only ne can be cheacked off at a time
-      // The submit button is what sends the form somewhere
+// The submit button is what sends the form somewhere
     </form>
   </body>
 </html>
