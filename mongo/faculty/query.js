@@ -1,4 +1,3 @@
-
 // Query the faculty database
 
 const mongoose = require('mongoose');
