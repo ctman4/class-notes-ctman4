@@ -1,0 +1,52 @@
+
+
+<!--
+Do all the javascript stuff in the <script> tag, along with puting this jquery code in
+so that you can use it in your browser:
+<script
+  src="http://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+<script>
+  console.log($(document)); //this creates a jquery object, the $ is a jquery constructor
+  console.log($('form')); //creates a jquery object that represents all the forms on the page
+  console.log($('#A')); // selects everything with id = A
+  console.log($('button'));
+  console.log($('.second'));
+  // The two ways we are creating a jquert object here are $(element) and $('CSS selector')
+</script>
+
+Event handlers
+
+- usually wan them assigned to a single thing
+
+  $('form').on('submit', funtion(event){
+    suppose we want to get hold of the form itself we would do
+    this is representing the jquery object in a deffierent way then before, it is representing the thing the event is acting on, in this case it is the form
+    const form = $(this);
+
+    event.preventdefault(); this is to check the form before it is sent off, it will show the data that would have been submitted in the console
+
+    console.log('Form data: ', form.serialize());
+
+});
+
+
+$('img').on('click', function(event){
+  this is if we want something to happen to an image we click on
+  const img = $(this); this is the image we clicked on
+  const id = img. attr('id');
+  console.log('Clicked image', id);
+
+  suppose we want to select all the images, we can put the images inside something, the something will be the container with the images
+  just change $('img').on('click') to $('document')
+
+  can also select divs, must select it by its class $(.second') because there are multiple divs
+});
+
+
+** make changes.html
+
+
+ -->
