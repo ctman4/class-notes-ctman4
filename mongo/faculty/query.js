@@ -75,4 +75,3 @@ Promise.all(queries)
   //to avoid nesting, use a chain of .then()s for the callbacks. This is just a long chain of method calls
   //then use a catch at the end of the code which will catch any errors that occur
   //then we replace the 'function' calls with mapping: .then(() => harcourt.save())
-]
