@@ -29,6 +29,12 @@ const queries = [
 
   // What are all the ranks?
   Professor.distinct('rank')
+
+  //How many registered voters live in the Canton zip code (13617)?
+  //What are the full names of all the registered voters whose first-name is STARR?
+  //How many people voted in the 2016 general election (GE16)?
+  //What is the last-name that comes last in the county in alphabetical order?
+  //How many zip codes does the county contain?
 ];
 
 // Run the queries in parallel

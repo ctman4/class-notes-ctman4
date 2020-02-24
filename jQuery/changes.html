@@ -1,0 +1,60 @@
+<!--
+
+in the form tag, we are finding inputs and removing them , finding them using the find method and
+removing them with the remove method
+
+closest method, is the opposite of find, gets the ancestor, in this case "div"
+
+we made a list with ul and want to add a list item inside of the list
+
+  const li = $('<li>Clicked button ${id}</li>'); you can put html in a string to create it, look inside of $('.second')
+
+
+  What does append do??
+
+
+   suppose we wanted to add a class to an element to use bootstrap or something
+  -->
+
+  <!-- Examples of editing the DOM -->
+  <!DOCTYPE html>
+    <head>
+      <meta charset="utf-8">
+      <title>JQuery Objects</title>
+    </head>
+    <body>
+      <form>
+        <input type="text" name="left">
+        <input type="text" name="right">
+        <button type="submit">Submit</button>
+      </form>
+      <div class="first">
+        <img id="A" src="http://via.placeholder.com/100x100">
+        <img id="B" src="http://via.placeholder.com/100x100">
+      </div>
+      <div class="second">
+        <button id="C">Click me</button>
+        <button id="D">Click me</button>
+      </div>
+      <ul id="clicks"></ul>
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script>
+
+        $('form').on('submit', function(event) {
+          event.preventDefault();
+          $(this).find('input').remove();
+        });
+
+        $(document).on('click', 'img', function(event) {
+          $(this).closest('div').remove();
+        });
+
+        $('.second').on('click', 'button', function(event) {
+          const id = $(this).attr('id');
+          const li = $(`<li>Clicked button ${id}</li>`);
+          $('#clicks').append(li);
+        });
+
+      </script>
+    </body>
+  </html>
