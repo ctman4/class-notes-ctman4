@@ -45,6 +45,14 @@ const find = function(array, callback){
   }
 };
 
+console.log(find(numbers, function(element){
+  for (const element of numbers){
+    if (element % 2 === 0){
+      return element;
+    }
+  }
+}));
+
 //////////////////////////////////////////////////////////////// Question 3
 
 // This creates the user object described on the quiz.
