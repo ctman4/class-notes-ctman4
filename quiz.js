@@ -31,7 +31,9 @@ const numbers = [5, 4, 3, 2, 1];
 // A. Get the first even number (by invoking the built-in find method).
 
 //find gets the first element in the array that satisfies the condition
-find(numbers, numbers.map(x => (x % 2 == 0)));
+const found = numbers.find(function(element){
+  return element % 2 === 0;
+});
 
 // B. Define a standalone find function. The array is its first argument and the callback is its second argument.
 const find = function(array, callback){
