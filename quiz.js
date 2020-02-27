@@ -34,6 +34,7 @@ const numbers = [5, 4, 3, 2, 1];
 const found = numbers.find(function(element){
   return element % 2 === 0;
 });
+console.log(found);
 
 // B. Define a standalone find function. The array is its first argument and the callback is its second argument.
 const find = function(array, callback){
