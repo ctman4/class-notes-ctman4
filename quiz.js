@@ -106,8 +106,7 @@ const f2 = function() {
 
 const funcs = {f1, f2};
 
-Promise.all(funcs){
+Promise.all(funcs)
   .then(funcs.sort(a,b) => (a - b))
   .then(console.log(funcs[0]))
   .catch(error => console.log(error.stack));
-}
