@@ -104,5 +104,10 @@ const f2 = function() {
 
 // Run f1 and f2 in parallel and log 'f1', 'f2', or 'equal' to indicate which function returned the larger result.
 
-
 const funcs = {f1, f2};
+
+Promise.all(funcs){
+  .then(funcs.sort(a,b) => (a - b))
+  .then(console.log(funcs[0]))
+  .catch(error => console.log(error.stack));
+}
