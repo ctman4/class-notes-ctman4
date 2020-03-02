@@ -3,9 +3,75 @@
  //it is a callback function and has some jquery objects wrapped in $
 
 const list -> created a list to hold submits
-form.serialize -> how to get form values to show in console when you run it in a browser 
+form.serialize -> how to get form values to show in console when you run it in a browser
+
+could also take a jquery object and find all the elements that match a specification
+const inputs = form.find('input');
+although this is not an array but a jquery object, we can loop through it
+this is a native object, if we want tto do anything fancy with it, turn it into a jquery object by wrapping it with $()
+then we can use it with the API that we want because we have a jQuery object -> inout = $(input)
+
+//const li-> here we created the list object using the input
+then we append to it,
+
+//then after the loop we use the history div and append the list to it
+
+we then found that when we ran each submit, we would get the history but it would show the history on the page everytime it was submited
+// when then added a counter to make it submit number 1, submit number 2, ....
+
+//we also had to delete what was in the text box everythime we wanted to submit another things so we go rid of This
+we did this by setting an empty input after
+
+
 })
 
 
 
   -->
+  <!-- Example with a loop over a JQuery object. -->
+  <!DOCTYPE html>
+    <head>
+      <meta charset="utf-8">
+      <title>JQuery Objects</title>
+    </head>
+    <body>
+      <form>
+        <input type="text" name="left">
+        <input type="text" name="right">
+        <button type="submit">Submit</button>
+      </form>
+      <div id="history"></div>
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script>
+
+        // Number of times the form has been submitted
+        let counter = 0;
+
+        // Respond to submit events
+        $('form').on('submit', function(event) {
+          const form = $(this); // JQuery object representing the form
+          event.preventDefault(); // Don't really submit the form
+
+          // Create a new list
+          const list = $('<ul></ul>');
+
+          // Translate each input value into a list item
+          const inputs = form.find('input'); // JQuery object represent all inputs
+          for (let input of inputs) {
+            input = $(input); // Turn into a JQuery object
+            const li = $(`<li>${input.val()}</li>`); // New list item
+            list.append(li);
+            input.val(''); // Empty out the box
+          }
+
+          counter++;
+          const p = $(`<p>Submit #${counter}</p>`);
+
+          // Add to the page
+          $('#history').append(p);
+          $('#history').append(list);
+        });
+
+      </script>
+    </body>
+  </html>

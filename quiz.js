@@ -37,13 +37,19 @@ const found = numbers.find(function(element){
 console.log(found);
 
 // B. Define a standalone find function. The array is its first argument and the callback is its second argument.
-const find = function(array, callback){
-  for (const element of array){
-    if (callback(element)){
-      return element;
-    }
+const find = function(array, callback(element){
+  if (element % 2 === 0){
+    return element;
   }
-};
+}{
+
+  for(const i of array){
+    callback(i);
+  }
+});
+
+
+
 
 console.log(find(numbers, function(element){
   for (const element of numbers){
@@ -66,6 +72,7 @@ const user = readline.createInterface({
 // A. Make small talk, using traditional callbacks.
 user.question("What is your name?", function(response){
   console.log("Hello " + response + ".");
+
   user.question("How are you doing?", function(response){
     console.log("I am also " + response + ".")
   });
@@ -77,13 +84,34 @@ const question = function(prompt) {
   return new Promise(resolve => user.question(prompt, resolve));
 };
 
+// How can we do this without promises?
+q1.exec(function(error, r1) {
+  if (error) console.log(error.stack);
+  console.log(r1);
+
+  q2.exec(function(error, r2) {
+    if (error) console.log(error.stack);
+    console.log(r2);
+  });
+});
+
+// How can we do this with promises?
+q1.exec()
+  .then(function(r1) {
+    console.log(r1);
+    return q2.exec();
+  })
+  .then(r2 => console.log(r2))
+  .catch(error => console.log(error.stack));
+
+
 // B. Make small talk again, using promises.
 
 
 //////////////////////////////////////////////////////////////// Question 4
 // Question 4 is commented out because otherwise it would interfere with Question 3.
 // When you're ready to work on Question 4, uncomment it and comment out Question 3.
-/*
+
 // This function returns a promise, which produces 42 after an asynchronous delay of one second.
 const f1 = function() {
   return new Promise(resolve => setTimeout(() => resolve(42), 1000));
@@ -97,4 +125,4 @@ const f2 = function() {
 // Run f1 and f2 in parallel and log 'f1', 'f2', or 'equal' to indicate which function returned the larger result.
 
 
-*/
+const funcs = {f1, f2};

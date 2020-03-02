@@ -8,6 +8,7 @@
     <form>
       <input type="text" name="left">
       <button type="submit">Submit</button>
+      <button type="delete">Delete</button>
     </form>
     <div id="history"></div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -28,7 +29,11 @@
         const inputs = form.find('input'); // JQuery object represent all inputs
         for (let input of inputs) {
           input = $(input); // Turn into a JQuery object
-          const li = $(`<li>${input.val()}</li>`); // New list item
+          const li = $(`<li><div>
+
+            ${input.val()}
+
+            </div></li>`); // New list item
           list.append(li);
           input.val(''); // Empty out the box
         }
@@ -40,6 +45,13 @@
         //$('#history').append(p);
         $('#history').append(list);
       });
+
+      $('form').on('delete', function(event){
+        const form = $(this);
+        event.preventDefault();
+        list.remove()
+      })
+
 
     </script>
   </body>
