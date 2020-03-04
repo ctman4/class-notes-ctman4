@@ -1,0 +1,48 @@
+// Hello world web server
+const express = require('express');
+
+//create the server
+const app = express();
+
+//order of gets matters, top to bottom
+
+//log requests to the console (good for debugging)
+//this is called on every request as soon as it arrives
+app.use(function(request, response, next){
+  console.log('-----', new Date().toLacaleTimeString());
+  console.log(request.method, request.url);
+  console.log('Body =', request.body);
+  next(); //keep handling this request
+});
+
+//Home page
+//finish this
+// if request matches this path, complete it
+app.get('/', function(request, response){
+  //backtick quotes for multiline strings
+  response.send(`
+    <h1>Bakery</h1>
+    <ul>
+      <li><a href="/cakes">Cakes</a></li>
+      <li><a href="/pies">Pies</a></li>
+    </ul>
+  `)
+});
+
+//Handling undefined routes
+//catching requests that never got handled
+app.use (function(request, response, next){
+  console.log('Replied with 404');
+  response.status(404).end();
+});
+
+//handle other errors
+app.use(function(error, request, response, next){
+  console.error(error.stack);
+  response.status(500).send(error.message);
+});
+
+
+//this line starts the server
+app.listen(3000); //3000 is the port, like an adress...
+console.log('Server is ready.')
