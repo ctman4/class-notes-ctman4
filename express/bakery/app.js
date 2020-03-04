@@ -4,6 +4,10 @@ const express = require('express');
 //create the server
 const app = express();
 
+
+//Ignore Icon requests and handle them before we get to logging
+// finish this app.get('favicon.ico', function(request, response))
+
 //order of gets matters, top to bottom
 
 //log requests to the console (good for debugging)
@@ -28,6 +32,10 @@ app.get('/', function(request, response){
     </ul>
   `)
 });
+
+//Routing
+// this means whenever you get a request with /cakes, send it to the routing in cakes .js 
+app.use('/cakes', require('./cakes.js'));
 
 //Handling undefined routes
 //catching requests that never got handled
