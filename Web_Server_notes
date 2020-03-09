@@ -1,0 +1,106 @@
+/*
+Web Servers - listen for requests respond with data
+
+http://myslu.stlawu.edu/~ltorrey/courses/cs332/
+
+^
+protocol - http - means hyper text traffic protocol, not secure
+          - https - is secure
+
+- you should never put your passwords or information into/on a site that
+is not secure because anyone can access it
+
+
+http://myslu.stlawu.edu/~ltorrey/courses/cs332/
+
+      ^
+      myslu.stlawu.edu - this is the host - the machine the server runs on
+
+
+http://myslu.stlawu.edu/~ltorrey/courses/cs332/
+
+                        ^
+                        /~ltorrey/courses/cs332/ - this is the path - explains the request
+
+http://myslu.stlawu.edu/~ltorrey/courses/cs332/?x=asdf
+
+                                              ^  suppose we had this at the end...
+                                              This is a query string that is there sometimes and is just some extra information
+                                              - if we add this onto the end we get to the same place
+Host - the machine you run your servers on
+
+- each host has different srvers for different things
+- we will have different servers at one point
+
+-to specify the server we want from the host, add :80, where 80 is the port of the server, like an address, put after the host:
+                                http://myslu.stlawu.edu:80/~ltorrey/courses/cs332/
+
+
+
+HTTP methods:
+- GET - send me data
+- POST - take this data
+- PUT - replace something
+- DELETE - delete something
+- PATCH - modify something
+
+- GET, POST requests can be made from html links/forms
+- PUT, DELETE, PATCH - must be made using javaScript
+
+
+Request bodies - optional data enclosure, typically sent with post, patch, put requests
+
+
+Responses: Every request recieves some response....
+
+response codes:
+
+200 -  OK (normal/ success status)
+
+201 - Created (new resource created)
+
+204 - No content - get this when you dont have an icon on tab
+
+304 - not modified
+
+400 - couldnt give you what you wanted (client error), you did something wrong
+
+401 - you are unauthorized, you are not logged in and you need to be to make this request
+
+403 - forbidden - you are trying to do something that you need certain credentials for...
+                  you are logged in, you are just not allowed to do this requests
+
+404 - not found - youve seen this when you type the wrong path in a url, the server doesnt have anything in that path for you
+
+418 - I am a teapot - look it up
+
+500 - Internal server error- there is a bug somewhere in the server code, your fault, you need to fix it... you will see these
+
+
+
+State -
+
+HTTP is stateless - (requests are independent)
+
+- sometimes you want the server to remember you so that you dont have to put your username/password in everytime you go to a web page
+
+- cookies accomplish this...
+
+Cookie - small piece of data stored by your browser passed along with requests and responses to the associated server - stored by browser
+
+
+Session - Client specific state stored by the the server linked to a session ID stored in a cookie.
+        - Sessions expire when the cookie does
+        - or when the Server wants to terminate your session
+
+
+
+Routing - (within a web server)  Deciding how requests will be handled based on the request method and path
+
+Rest routes -
+
+GET /resources/ -> retrieve all resources
+GET /resources/id -> retrieve all resources with the specific id
+DELETE /resources/id -> delete the resource with a specific id
+POST /resources/ -> create a new resource
+PUT /resourced/id -> replace the resource with a specific id

@@ -46,11 +46,11 @@
         $('#history').append(list);
       });
 
-      $('form').on('submit','Delete', function(event){
+      $('form').on('delete', function(event){
         const form = $(this);
         event.preventDefault();
-        list.remove();
-      });
+        list.remove()
+      })
 
 
     </script>

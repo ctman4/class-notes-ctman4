@@ -1,10 +1,10 @@
-//Router
-
 // Router for cake-related requests
 const express = require('express');
 
 // Create the router
 const router = express.Router();
+
+
 
 // cs-linuxlab-##.stlawu.edu:3000/cakes/
 router.get('/', function(request, response) {

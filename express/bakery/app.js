@@ -1,56 +1,47 @@
-// Hello world web server
+// Bakery web server
 const express = require('express');
 
-//create the server
+// Create the server
 const app = express();
 
+// Use a view engine
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
-//Ignore Icon requests and handle them before we get to logging
-// finish this app.get('favicon.ico', function(request, response))
+// Ignore icon requests
+app.get('/favicon.ico', function(request, response) {
+  response.status(204).end();
+});
 
-//order of gets matters, top to bottom
-
-//log requests to the console (good for debugging)
-//this is called on every request as soon as it arrives
-app.use(function(request, response, next){
-  console.log('-----', new Date().toLacaleTimeString());
+// Log requests to the console
+app.use(function(request, response, next) {
+  console.log('---------------------', new Date().toLocaleTimeString());
   console.log(request.method, request.url);
   console.log('Body =', request.body);
-  next(); //keep handling this request
+  next(); // Keep handling this request
 });
 
-//Home page
-//finish this
-// if request matches this path, complete it
-app.get('/', function(request, response){
-  //backtick quotes for multiline strings
-  response.send(`
-    <h1>Bakery</h1>
-    <ul>
-      <li><a href="/cakes">Cakes</a></li>
-      <li><a href="/pies">Pies</a></li>
-    </ul>
-  `)
+// cs-linuxlab-##.stlawu.edu:3000/
+app.get('/', function(request, response) {
+  response.render('index');
 });
 
-//Routing
-// this means whenever you get a request with /cakes, send it to the routing in cakes .js 
+// Routing
 app.use('/cakes', require('./cakes.js'));
+app.use('/pies', require('./pies.js'));
 
-//Handling undefined routes
-//catching requests that never got handled
-app.use (function(request, response, next){
+// Handle undefined routes
+app.use(function(request, response, next) {
   console.log('Replied with 404');
   response.status(404).end();
 });
 
-//handle other errors
-app.use(function(error, request, response, next){
+// Handle other errors
+app.use(function(error, request, response, next) {
   console.error(error.stack);
   response.status(500).send(error.message);
 });
 
-
-//this line starts the server
-app.listen(3000); //3000 is the port, like an adress...
-console.log('Server is ready.')
+// Start the server
+app.listen(3000);
+console.log('Server is ready.');

@@ -1,0 +1,23 @@
+<!--
+
+Visit: ....../pies/apple
+
+              ^_________^ path
+visiting this site you get "Apple Pies"
+
+
+
+
+-->
+
+View Engine:
+
+- creates html fo responses
+- avoiding mixing js and markup
+- avoid copying and pasting full pages when making new pages like you did in assignment 1
+
+(EJS)- embedded javascript
+
+apps.set('views', ./views) // this is specifying the folder to put something in?????
+
+render(index) --> this finds the index file 

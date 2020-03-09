@@ -28,8 +28,8 @@
       });
 
       $(document).on('click', 'img', function(event) {
-        const img = $(this);
-        const id = img.attr('id');
+        const img = $(this);// make a jquery object img
+        const id = img.attr('id');// this gets the id value of the image clicked 
         console.log('Clicked image', id);
       });
 

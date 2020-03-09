@@ -30,7 +30,7 @@ app.get('/zap/:z', function(request, response){//hey app server, listen for a ge
 
 //finish this
 //app.get('/zap/:z', function(request, response){//hey app server, listen for a get request, the '/' is the path and function is a callback
-  //response.send('Hello zap with${request.query .z}")
+  //response.send('Hello zap with${request.query.x} and {request.query.y}')
 
 //this line starts the server
 app.listen(3000); //3000 is the port, like an adress...

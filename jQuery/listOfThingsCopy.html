@@ -5,6 +5,18 @@
     <title>List Of Things</title>
   </head>
   <body>
+    <header>
+      <h1>Create your poll!</h1>
+    </header>
+    <form id = "pollButtons">
+      <input type="text" name="left">
+      <button type="add" name="poll">Poll</button>
+    </form>
+    <form id="answerButtons">
+      <input type="text" name="left">
+      <button type="add" name="answers">Answers</button>
+      <button type="add" name="final">Finish Creating Answers</button>
+    </form>
     <form>
       <input type="text" name="left">
       <button type="submit">Submit</button>
@@ -46,11 +58,11 @@
         $('#history').append(list);
       });
 
-      $('form').on('submit','Delete', function(event){
+      $('form').on('delete', function(event){
         const form = $(this);
         event.preventDefault();
-        list.remove();
-      });
+        list.remove()
+      })
 
 
     </script>

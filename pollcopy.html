@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <title>Poll Copy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <body class="m-3 p-3">
+    <header>
+      <h1>Create your poll!</h1>
+    </header>
+    <!-- Create a textbox and button for user to input a question-->
+    <h3>Question</h3>
+    <form class= "pollButtons">
+      <input type="text" name="left">
+      <button type="add" name="poll">Poll</button>
+    </form>
+
+    <!-- Poll button information -->
+    <div id="history"></div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+
+        $('.pollButtons').on('submit', function(event) {
+          const form = $(this);
+          event.preventDefault();
+          // Create a new list
+          const list = $('<ul></ul>');
+          const inputs = form.find('input');
+
+          const li = $(`<div><p>${inputs.val()}</p></div>`);
+          $(this).remove();    // Clear the input box and button
+
+          $('#history').append(li); // Display the users question
+        });
+
+    </script>
+
+    <!-- Answers information -->
+    <h3 class="pt-3 pb-3">Answers<h3>
+    <form class="answerButtons">
+      <input type="text" name="left">
+      <button type="add" id="answers">Add Choice</button>
+    </form>
+    <form class="createButton pt-3 pb -3">
+      <button type="add" name="final">Start the Poll!</button>
+    </form>
+    <div id="history1"></div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+
+      let counter = 0;  // Number of times an answer is submitted
+
+      // Add a new row to the tally table for each answer inputted
+      function productsAdd(input,count) {
+        $("#Tallies tbody").append(
+          `<tr id=${count}>` +
+
+          `<td>${count}: ${input}</td>` +
+
+          `<td>0</td>` +
+
+          "</tr>"  );
+      }
+
+
+      // Respond to each answer button clicked
+      $('.answerButtons').on('submit', function(event) {
+        const form = $(this);
+        event.preventDefault();
+
+        // Create a new list
+        const list = $('<ul></ul>');
+        counter++;
+
+        // Translate each input value into a list item
+        const inputs = form.find('input');
+        for (let input of inputs) {
+          input = $(input);
+          const li = $(`<div id=answers><button id=${counter}>${counter}: ${input.val()}</button></div>`); // New list item
+          list.append(li);
+          productsAdd(input.val(),counter); // Generate the new row for the table
+          input.val('');
+        }
+
+        $('#history1').append(list);
+      });
+
+      // Keep track of which button is clicked
+      $('#history1').on('click','button', function(event) {
+        const button = $(this);
+        const id = button.attr('id');
+        // increment the button that is clicked
+        $('#Tallies').find('tr').each(function () {
+          const td = $(this).find(`td`),
+            input = td.eq(0).text(),
+            tally = td.eq(1).text()
+            if (id === input.charAt(0)){
+              $(`#Tallies`).find(`tr:eq(${id})`).find(`td:eq(1)`).html(Number(tally) + 1);}
+          });
+      });
+
+      // Clear answer input and buttons to start the poll
+      $('.createButton').on('submit', function(event) {
+        const form = $(this);   // JQuery object representin the form
+        event.preventDefault();
+        $('.answerButtons').remove();
+        $(this).remove();
+      });
+
+    </script>
+
+    <!-- Bootstrap documentation -->
+    <div class="container pt-3 pb-3">
+      <h3 class="pb-3">Tallies</h3>
+      <table class="table table-bordered mt-3" id = "Tallies">
+        <thead style="font-size:20px">
+          <tr>
+            <th scope="col">Answer</th>
+            <th scope="col">Count</th>
+          </tr>
+        </thead>
+        <tbody style="font-size:16px">
+          <script>
+          </script>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Clear inputs to start a new poll -->
+    <form class= "newPoll" >
+      <button type="submit" name="poll" >Start New Poll</button>
+    </form>
+  </body>
+>>>>>>> 0cd412f6987b033f007ec8dcdfa0eea97fe94785
+</html>
