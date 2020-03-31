@@ -20,8 +20,8 @@ app.use(function(request, response, next){
   next(); //keep handling this request
 });
 
-//Home page
-//finish this
+// Home page
+// finish this
 // if request matches this path, complete it
 app.get('/', function(request, response){
   //backtick quotes for multiline strings

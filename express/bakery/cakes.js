@@ -7,6 +7,7 @@ const router = express.Router();
 
 
 // cs-linuxlab-##.stlawu.edu:3000/cakes/
+
 router.get('/', function(request, response) {
   response.send(`
     <h1>Cakes</h1>

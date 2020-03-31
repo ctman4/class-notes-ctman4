@@ -1,0 +1,64 @@
+<!--
+
+Requests for the ajax
+
+//palceholder is puts text in something before typing kind of like a label (like in a textbox)
+// made a request bosy to send a reuest using javascript without actually leaving the page
+
+// First thing that we want to do is intercept the form submits
+//$('form').on(submit)
+// when the form is submitted ,
+// first prevent default
+
+// the befor emaking a request, create a request object
+// then make a jquery request (URL is the path, and data is the body)
+
+//method -> gave a box the flowers.js the id method
+// path and body are also ids
+//send the request
+
+//then send the request
+//this is an Asynchronous call so we need a callback
+//it doesnt use promises but they are similar
+//.done() is like a .then()
+// then display the response in the text area
+
+//JSON.stringify is a utility function to turn objectts into strings
+//.fail is like a .catch
+//stringify the error and put it in the text area
+-->
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Florist</title>
+  </head>
+  <body>
+    <h1>Request</h1>
+    <form>
+      <input type="text" id="method" placeholder="method">
+      <input type="text" id="path" placeholder="path">
+      <input type="text" id="body" placeholder="body">
+      <button>Send</button>
+    </form>
+    <h1>Response</h1>
+    <textarea rows="5" cols="85"></textarea>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+      // Intercept form submits
+      $('form').on('submit', function(event) {
+        event.preventDefault();
+        // Construct a request object
+        const request = {
+          method: $('#method').val(),
+          url: $('#path').val(),
+          data: $('#body').val()
+        };
+        // Send the request and display the response on the page
+        $.ajax(request)
+          .done(response => $('textarea').val(JSON.stringify(response)))
+          .fail(error => $('textarea').val(JSON.stringify(error)));
+      });
+    </script>
+  </body>
+</html>

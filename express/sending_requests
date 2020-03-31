@@ -1,0 +1,8 @@
+changed one line of code in app.js for the flowers program
+
+
+//how to parse request bodies like query strings
+
+app.use(express.url....
+
+//created a views folder with index for homepage and app --> look at notes on that 

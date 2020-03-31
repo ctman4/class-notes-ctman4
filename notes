@@ -1,3 +1,11 @@
+What are the different parts of building a web application?
+
+Bootstrap
+- Styling sheet
+
+Express
+
+
 <!--
 
 Visit: ....../pies/apple
@@ -21,3 +29,13 @@ View Engine:
 apps.set('views', ./views) // this is specifying the folder to put something in?????
 
 render(index) --> this finds the index file
+
+
+
+- html
+
+- Javascript
+
+- jQuery
+
+- mongodb

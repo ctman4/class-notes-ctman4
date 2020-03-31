@@ -1,4 +1,4 @@
-// Bakery web server
+// Florist web server
 const express = require('express');
 
 // Create the server
@@ -8,18 +8,15 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+// Parse request bodies like query strings
+app.use(express.urlencoded({extended: false}));
+
 // Ignore icon requests
-// Ignore Icon requests and handle them before we get to logging
-// finish this app.get('favicon.ico', function(request, response))
 app.get('/favicon.ico', function(request, response) {
   response.status(204).end();
 });
 
-//order of gets matters, top to bottom
-
 // Log requests to the console
-// log requests to the console (good for debugging)
-// this is called on every request as soon as it arrives
 app.use(function(request, response, next) {
   console.log('---------------------', new Date().toLocaleTimeString());
   console.log(request.method, request.url);
@@ -27,14 +24,13 @@ app.use(function(request, response, next) {
   next(); // Keep handling this request
 });
 
-// cs-linuxlab-##.stlawu.edu:3000/
+// Render a home page
 app.get('/', function(request, response) {
   response.render('index');
 });
 
-// Routing
-app.use('/cakes', require('./cakes.js'));
-app.use('/pies', require('./pies.js'));
+// Manage a collection of flowers
+app.use('/flowers', require('./flowers.js'));
 
 // Handle undefined routes
 app.use(function(request, response, next) {
