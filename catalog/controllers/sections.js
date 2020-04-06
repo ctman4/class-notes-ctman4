@@ -30,7 +30,7 @@ module.exports.delete = function(request, response, next) {
 
 // PUT /sections/:id (with the changes in the request body)
 module.exports.update = function(request, response, next) {
-  Section.findByIdAndUpdate(request.params.id, request.body)
+  Section.findByIdAndUpdate(request.params.id, request.body, {runValidators:true})
     .then(section => section ? response.status(200).end() : next())
     .catch(error => next(error));
 };

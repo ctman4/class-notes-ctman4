@@ -8,13 +8,13 @@ const mongoose = require('mongoose');
 
 // Define the schema
 const Section = new mongoose.Schema({
-  course: String,
-  day: String,
-  time: Date,
-  instructor: String
+  course: {type: String, required: true, match: /CS\d\d\d/},
+  day: {type: String, required: true, enum: ['M/W', 'M/W/F', 'T/TH', 'W/F']},
+  time: {type:Date, required:true},
+  instructor: {type: String, required: true, maxlength: 25, trim:true}
 });
 
-// using a setter 
+// using a setter
 // Setters allow you to transform the data before it gets to the raw mongodb document or query.
 // Convert incoming time strings to Date objects
 Section.path('time').set(function(time) {
