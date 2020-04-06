@@ -12,4 +12,4 @@ const Course = new mongoose.Schema({
 });
 
 //Export the model
-module.exports = ,ongoose.model('Course', Course);
+module.exports = mongoose.model('Course', Course);
